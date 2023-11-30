@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        header{
+            background-image: url("../public/images/back-admin.gif");
+            background-size: cover;
+            height: 100px;
+        }
+    </style>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+       function loadpage(pageName){
+    $.ajax({
+        method:"get",
+        url:pageName,
+        success:(response)=>{
+            $("section").html(response);
+
+        }
+    })
+}
+        $(function(){
+            $("#btnSignIn").click(()=>{
+                loadpage("user-login.html");
+              
+            })
+
+            function loadvideos(){
+                $("section").html("");
+                $.ajax({
+                    method:"get",
+                    url:"http://127.0.0.1:6600/getvideos",
+                    success:(videos)=>{
+                        videos.map(video=>{
+                            $(`<tr>
+                                <td>${video.Title}</td>
+                                <td><iframe src=${video.Url} width="200" height="100"></iframe></td>
+                                <td>
+                                    <button id="btnEdit" name=${video.VideoId} class="btn btn-warning bi bi-pen-fill"></button>
+                                    <button id="btnDelete" name=${video.VideoId}  class="btn btn-danger bi bi-trash-fill"></button>
+                                    </td>
+                                    </tr>`).appendTo("tbody")
+                        })
+                    }
+                })
+            }
+
+            $(document).on("click","#btnlogin" ,()=>{
+             $.ajax({
+                method:"get",
+                url:"http://127.0.0.1:6600/getadmin",
+                success:(users)=>{
+                    var user=users.find(admin=>admin.UserId==$("#LoginUserId").val())
+                    if(user.UserId==$("#LoginUserId").val() && user.Password==$("#LoginPassword").val()){
+                        loadpage("admin-dashboard.html");
+                        loadvideos();
+                    }
+                    else{
+                        alert("Invalid Admin Details")
+                    }
+                }
+             })
+
+             $(document).on("click","#btnAddvideo",()=>{
+                var video ={
+                    VideoId:$("#Videoid").val(),
+                    Title:$("#Title").val(),
+                    Url:$("#Url").val(),
+                    Likes:$("#Likes").val(),
+                    Views:$("#Views").val(),
+                    CategoryId:$("#lstcategories").val()
+                };
+                $.ajax({
+                    method:'post',
+                    url:'http://127.0.0.1:6600/addvideo',
+                    data:video
+
+                })
+                alert('video added successfully');
+                        loadpage('admin-dashboard.html');
+                        loadvideos();
+             })
+            })
+
+            function loadcategories(){
+                $.ajax({
+                    method:"get",
+                    url:"http://127.0.0.1:6600/getcategories",
+                    success:(categories)=>{
+                        categories.map(category=>{
+                            $(`<option value=${category.CategoryId}>${category.CategoryName}</option>`).appendTo("#lstcategories")
+                        })
+                        
+                    }
+                })
+            }
+
+            $(document).on("click","#btnaddnew",()=>{
+                loadpage(`admin-add-video.html`);
+                loadcategories();
+                
+               
+            })
+
+
+            var id;
+            $(document).on("click","#btnEdit",(e)=>{
+                loadpage("admin-edit-video.html");
+                loadcategories();
+                 id=parseInt(e.target.name);
+                $.ajax({
+                    method:`get`,
+                    url:`http://127.0.0.1:6600/getvideo/${id}`,
+                    success:(video)=>{
+                        $("#Videoid").val(video[0].VideoId);
+                        $("#Title").val(video[0].Title);
+                        $("#Url").val(video[0].Url);
+                        $("#Likes").val(video[0].Likes);
+                        $("#Views").val(video[0].Views);
+                        $("#lstcategories").val(video[0].CategoryId)
+
+                    }
+                })
+            })
+
+            $(document).on("click","#btnCancel",()=>{
+                loadpage('admin-dashboard.html');
+                loadvideos();
+            })
+
+            $(document).on("click","#btnUpdateVideo",()=>{
+                var video ={
+                    VideoId:$("#Videoid").val(),
+                    Title:$("#Title").val(),
+                    Url:$("#Url").val(),
+                    Likes:$("#Likes").val(),
+                    Views:$("#Views").val(),
+                    CategoryId:$("#lstcategories").val()
+                };
+                $.ajax({
+                    method:'put',
+                    url:`http://127.0.0.1:6600/updatevideo/${id}`,
+                    data:video
+                })
+                alert("video update ..");
+                loadpage("admin-dashboard.html");
+                loadvideos();
+
+            })
+
+            $(document).on("click","#btnDelete",(e)=>{
+                var id =parseInt(e.target.name);
+                var flag=confirm("are you sure?");
+                if(flag==true){
+                    $.ajax({
+                        method:"delete",
+                        url:`http://127.0.0.1:6600/deletevideo/${id}`,
+                        
+                    })
+                    alert("video delete successfully ..");
+                loadpage("admin-dashboard.html");
+                loadvideos();
+
+                }
+            })
+        })
+
+        
+    </script>
+</head>
+<body class="container-fluid">
+    <header class="d-flex justify-content-between align-items-center p-2 text-white">
+        <h1>Video Tutorial</h1>
+        <h2>Admin Home</h2>
+        <button class="bi bi-person-fill btn btn-light" id="btnSignIn">sign in</button>
+
+    </header>
+    <section>
+
+    </section>
+    
+</body>
+</html>

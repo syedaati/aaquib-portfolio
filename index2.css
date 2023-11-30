@@ -1,0 +1,57 @@
+body{
+    background-color: black;
+   
+}
+header{
+   background-image: url("images/tech\ gif.gif");
+    background-size: cover;
+    height: 650px;
+    padding: 8px;
+    width: 100vw;
+
+   
+   
+}
+section{
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 3fr;
+    height: 300px;
+    z-index: 2;
+    margin-top: -250px;
+   
+    
+    
+}
+.box{
+    box-shadow: 2px 2px 2px white;
+    height: 300px;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 30px;
+  
+
+}
+@media screen and (max-width:600px){
+   
+    section{
+        display: block;
+    }
+    #emailcontainer{
+       
+        flex-wrap: nowrap; 
+        width: 100%;
+        
+    }
+  
+}
+  
+       
+    
+       
+        
+
+    
+
+    
