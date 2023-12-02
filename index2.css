@@ -1,23 +1,23 @@
-body{
-    background-color: black;
-   
-}
-header{
-   background-image: url("images/tech\ gif.gif");
-    background-size: cover;
-    height: 650px;
-    padding: 8px;
-    width: 100vw;
 
-   
-   
+ 
+body{
+  background-image: url("public/images/techimg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
 }
+ 
+   
+   
+
 section{
     display: grid;
     grid-template-columns: 3fr 3fr 3fr 3fr;
     height: 300px;
-    z-index: 2;
-    margin-top: -250px;
+   
+ 
+   
    
     
     
@@ -33,6 +33,9 @@ section{
   
 
 }
+#nav span{
+   cursor: pointer;
+}
 @media screen and (max-width:600px){
    
     section{
@@ -40,10 +43,26 @@ section{
     }
     #emailcontainer{
        
-        flex-wrap: nowrap; 
-        width: 100%;
+       display: flex;
+       flex-direction: column;
+        width: 590px;
         
     }
+    nav span{
+        display: block;
+    }
+    .navbar-toggler{
+      
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    #signin{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+
   
 }
   
