@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class HDFC_Bank_Version1
+        {
+             PersonalBanking = "Personal Banking Services <br>";
+             NRIBanking = "Banking Services for NRI Customers <br>";
+             Print(){
+                document.write(`${this.PersonalBanking}<br>${this.NRIBanking}<br>`);
+             }
+        }
+        class HDFC_Bank_Version2
+        {
+            Loans = "Personal / Car / Bike Loans <br>";
+            Print(){
+                let obj = new HDFC_Bank_Version1();
+                obj.Print();
+                document.write(`${this.Loans}<br>`);
+            }
+        }
+        class HDFC_Bank_Version3
+        {
+            CreditCards = "Credit Card Payments<br>";
+            Print(){
+                let obj = new HDFC_Bank_Version2();
+                obj.Print();
+                document.write(`${this.CreditCards}<br>`);
+            }
+        }
+        function InstallClick(){
+            var ver = document.getElementById("lstVersions").value;
+            switch(ver)
+            {
+                case "ver1":
+                let obj1 = new HDFC_Bank_Version1();
+                document.write("<h2>HDFC Version 2021</h2>")
+                obj1.Print();
+                break;
+                case "ver2":
+                let obj2 = new HDFC_Bank_Version2();
+                document.write("<h2>HDFC Version 2022</h2>")
+                obj2.Print();
+                break;
+                case "ver3":
+                let obj3 = new HDFC_Bank_Version3();
+                document.write("<h2>HDFC Version 2023</h2>")
+                obj3.Print();
+                break;
+                default:
+                document.write("Please Select a Version");
+                break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Install HDFC Bank App</legend>
+        <select id="lstVersions">
+            <option value="-1">Select Version</option>
+            <option value="ver1">Version-1 [2021]</option>
+            <option value="ver2">Version-2 [2022]</option>
+            <option value="ver3">Version-3 [2023]</option>
+        </select>
+        <button onclick="InstallClick()">Install</button>
+    </fieldset>
+</body>
+</html>

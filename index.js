@@ -23,6 +23,7 @@ $(function () {
         $.ajax({
             method: "get",
             url: "http://127.0.0.1:6600/getusers",
+        
             success: (users) => {
                 var user = users.find(item => item.Email === email);
                 if(user){
