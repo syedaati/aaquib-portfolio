@@ -22,7 +22,7 @@
         }
 
 
-        .info {
+        #info {
             display: flex;
             justify-content: space-around;
             margin-top: 20vh;
@@ -101,22 +101,22 @@
         $(function () {
             $("#about").click(() => {
                 $("#project").show();
-                $(".info").hide();
+                $("#info").hide();
                 $("#skill-cards").hide();
 
             })
 
             $("#home").click(() => {
-                $(".info").show();
+                $("#info").show();
                 $("#project").hide();
                 $("#skill-cards").hide();
 
             })
 
             $("#skills").click(() => {
-                $("#skill-cards").show();
                 $("#info").hide();
                 $("#project").hide();
+                $("#skill-cards").show();
 
             })
            
@@ -171,7 +171,7 @@
 
     </header>-->
 
-    <div class="info">
+    <div id="info">
         <div>
             <img style="height: 300px; width: 300px; border-radius:200px;" src="public/images/developer img.jpg" alt=""
                 height="300px">
