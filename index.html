@@ -11,8 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <style>
-        * {
+        body {
             background-image: url("public/images/IrM\ background\ gif.gif");
+
             background-size: cover;
 
             background-repeat: no-repeat;
@@ -32,12 +33,24 @@
 
 
         }
+
         ul li {
             list-style: none;
             cursor: pointer;
-            background-color: black;
+            
+            padding: 6px;
+
         }
 
+        ul li:hover {
+
+            background-color: rgb(53, 52, 52);
+            border-radius: 10px;
+            
+            
+
+
+        }
 
 
         img {
@@ -50,13 +63,15 @@
         a {
             text-decoration: none;
             color: white;
+        
         }
+      
 
 
 
         #project ul li {
             margin-bottom: 10px;
-            background-color: black;
+
             border-radius: 15px;
             padding: 10px;
             text-align: center;
@@ -75,9 +90,7 @@
 
         }
 
-        button:hover {
-            background-color: rgba(235, 74, 74, 0.4);
-        }
+
 
         #name {
             text-shadow: 2px 2px 2px rgb(14, 22, 20);
@@ -87,15 +100,8 @@
             display: grid;
             grid-template-columns: 3fr 9fr;
         }
-      
-
-
-
-
-
-
-
         
+
     </style>
     <script>
         $(function () {
@@ -119,7 +125,8 @@
                 $("#skill-cards").show();
 
             })
-           
+
+
 
 
 
@@ -133,16 +140,16 @@
 <body class="container-fluid p-3 text-white">
     <div id="header" class="nav d-flex justify-content-between">
 
-            <h1 >Portfolio</h1>
-      
-            <ul class="d-flex m-3" >
-                <li id="home" class="me-4 h4"><a href="#"> Home</a></li>
-                <li class="me-4 h4"><a href="#project" id="about">MY Work</a></li>
-                <li  class="me-4 h4"><a href="#skill-cards" id="skills">Skills</a></li>
-                <a href="https://videotutorial-project-8d223.web.app/" class="h4 bi bi-github"></a>
-            </ul>
+        <h1>Portfolio</h1>
 
-        </div>
+        <ul class="d-flex m-3">
+            <li id="home" class="me-4 h4"><a href="#"></a> Home</li>
+            <li id="about" class="me-4 h4"><a href="#project" ></a>MY Work</li>
+            <li id="skills" class="me-4 h4"><a href="#skill-cards" ></a>Skills</li>
+            <a href="https://videotutorial-project-8d223.web.app/" class="h4 bi bi-github fs-3"></a>
+        </ul>
+
+    </div>
 
     <!--<header>
 
@@ -186,14 +193,14 @@
 
     </div>
 
-    <span id="btnback"></span>
+
 
     <nav id="project" style=" display: none;">
 
         <ul>
             <li><a href="src/Naved Resume.pdf" target="port">Resume</a></li>
             <li><a href="https://videotutorial-project-8d223.web.app/" target="port">Video-Tutorial-Project</a></li>
-            <li><a href="hotel reg form.html" target="port">Hotel Booking</a></li>
+            <li><a href="hotel-booking.html" target="port">Hotel Booking</a></li>
 
             <li><a href="fakestore.html">API Fakestore</a></li>
             <li><a href="EMIcal.html" target="port">EMI Calculater</a></li>
